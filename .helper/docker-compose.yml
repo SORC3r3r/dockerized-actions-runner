@@ -1,0 +1,6 @@
+version: '3.7'
+services:
+  sorc3r3r-dockerized-actions-runner-01:
+    build:
+      context: ../
+    image: docker.pkg.github.com/sorc3r3r/dockerized-actions-runner/dockerized-actions-runner:latest

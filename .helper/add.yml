@@ -1,0 +1,11 @@
+  RUNNER_CUSTOM_NAME:
+    image: docker.pkg.github.com/sorc3r3r/dockerized-actions-runner/dockerized-actions-runner:latest
+    network_mode: host
+    privileged: true
+    environment:
+      - "RUNNER_NAME=RUNNER_CUSTOM_NAME"
+      - "RUNNER_REPOSITORY_URL=https://github.com/GITHUB_OWNER/GITHUB_REPOSITORY"
+      - "RUNNER_TOKEN=GITHUB_RUNNER_TOKEN"
+      - "RUNNER_WORKING_DIRECTORY=_work"
+      - "RUNNER_LABELS=dockerized"
+    command: bash -c "./runner.sh"

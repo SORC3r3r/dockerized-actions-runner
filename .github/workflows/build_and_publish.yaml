@@ -1,0 +1,29 @@
+name: build and publish
+
+on:
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    - cron:  '0 */4 * * *'
+  push:
+    branches:
+      - '**'
+    tags-ignore:
+      - '**'
+
+jobs:
+  build:
+
+    name: build and publish
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build
+        run: docker-compose -f .helper/docker-compose.yml build
+      - name: Login to Docker Registry
+        if: github.ref == 'refs/heads/master'
+        run: |
+          echo "${{secrets.GITHUB_TOKEN}}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
+      - name: Publish to Docker Registry
+        if: github.ref == 'refs/heads/master'
+        run: docker-compose -f .helper/docker-compose.yml push
