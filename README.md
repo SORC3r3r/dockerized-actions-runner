@@ -52,19 +52,6 @@ You can also update and use the `docker-compose.yml` located in `./templates/sor
 To conveniently launch multiple actions runner, you can use the `launch.sh` script.
 
 ```
-Examples:
-
-Launch 3 action runners for the repository 'dockerized-actions-runner' of 'SORC3r3r'
-./launch.sh -o sorc3r3r -r dockerized-actions-runner -a 92hoifu4o7ro38z48bfzbw9er4h8bf8oz3b -n 3
-
-Launch 5 organisation level runners for organisation 'sorc3r3r-org'
-./launch.sh -t org -o sorc3r3r-org -a 92hoifu4o7ro38z48bfzbw9er4h8bf8oz3b -n 5
-
-# In case of the org level runner, you need to have admin access to the organisation and your access token has to 
-inherit those access rights
-```
-
-```
 Usage: ./launch.sh [options [parameters]]
 
 Options:
@@ -77,6 +64,19 @@ Options:
   -t : runner-type, Choose to create an repository or org level runner; Options:[repo/org], defaults to [repo]
   -c : count, Number of runners to be launched; defaults to [1]
   -n : name, Desired name of your runner
+```
+
+```
+Examples:
+
+Launch 3 action runners for the repository 'dockerized-actions-runner' of 'SORC3r3r' with a custom name "my-runner-in-docker"
+./launch.sh -o sorc3r3r -r dockerized-actions-runner -a 92hoifu4o7ro38z48bfzbw9er4h8bf8oz3b -c 3 -n my-runner-in-docker
+
+Launch 5 organisation level runners for organisation 'sorc3r3r-org'
+./launch.sh -t org -o sorc3r3r-org -a 92hoifu4o7ro38z48bfzbw9er4h8bf8oz3b -c 5
+
+# In case of the org level runner, you need to have admin access to the organisation and your access token has to 
+inherit those access rights
 ```
 
 The `launch.sh` script will use your `GitHub personal access token` to fetch the `RUNNER_TOKEN` for whatever number of 
