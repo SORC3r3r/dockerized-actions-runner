@@ -49,6 +49,7 @@ RUN cd /usr/bin \
 # install github actions runner
 RUN ACTIONS_RUNNER_VERSION=$(git ls-remote --refs --sort="version:refname" --tags https://github.com/actions/runner | cut -d/ -f3-|tail -n1) \
     && ACTIONS_RUNNER_VERSION_NUMBER="${ACTIONS_RUNNER_VERSION:1}" \
+    && echo $ACTIONS_RUNNER_VERSION_NUMBER \
     && curl -O -L https://github.com/actions/runner/releases/download/${ACTIONS_RUNNER_VERSION}/actions-runner-linux-x64-${ACTIONS_RUNNER_VERSION_NUMBER}.tar.gz \
     && tar xzf ./actions-runner-linux-x64-${ACTIONS_RUNNER_VERSION_NUMBER}.tar.gz \
     && rm -f actions-runner-linux-x64-${ACTIONS_RUNNER_VERSION_NUMBER}.tar.gz
